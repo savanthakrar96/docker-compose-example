@@ -1,6 +1,6 @@
 const express = require('express')
 const pool  = require('./db')
-const port = 1337
+const port = 3000
 
 const app = express()
 app.use(express.json())
@@ -32,7 +32,10 @@ app.post('/', async (req,res) => {
 
 app.get('/setup',async (req,res) => {
     try {
-        await pool.query('CREATE TABLE schools(id  SERIEAL PRIMARY KEY, name VARCHAR(100), address VARCHAR(100) )') 
+       await pool.query(
+  'CREATE TABLE schools (id SERIAL PRIMARY KEY, name VARCHAR(100), address VARCHAR(100))'
+)
+
         res.status(200).send({
             message: "Successfully created table"
         })    
